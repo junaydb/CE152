@@ -15,7 +15,7 @@ public class Country extends Population {
          * create array of random numbers and store sum of this array,
          * this sum is for use in formula for random population distribution
          */
-        double randArr[] = new double[numCities];
+        double[] randArr = new double[numCities];
         double randArrSum = 0;
         for (int i = 0; i < randArr.length; i++) {
             randArr[i] = Utility.round(Utility.getRand(0.1, 1));
@@ -66,7 +66,7 @@ public class Country extends Population {
          * create array of random numbers and store sum of this array,
          * this sum is for use in formula for random population distribution
          */
-        double randArr[] = new double[this.cities.length];
+        double[] randArr = new double[this.cities.length];
         double randArrSum = 0;
         for (int i = 0; i < randArr.length; i++) {
             randArr[i] = Utility.round(Utility.getRand(0.1, 1));
