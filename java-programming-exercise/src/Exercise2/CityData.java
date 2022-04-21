@@ -30,8 +30,8 @@ public class CityData {
             String[] values = line.split(",(?=\")");
 
             // remove double quotes from strings
-            for (int j = 0; j < values.length; j++) {
-                values[j] = values[j].replace("\"", "");
+            for (int i = 0; i < values.length; i++) {
+                values[i] = values[i].replace("\"", "");
             }
 
             City city = new City(values[1], Double.parseDouble(values[2]), Double.parseDouble(values[3]), values[4],

@@ -50,7 +50,9 @@ public class MainCity {
                             Double.parseDouble(userInputArr[1]));
                     System.out.println();
                 } catch (IndexOutOfBoundsException e) {
-
+                    System.out.println();
+                } catch (NumberFormatException e) {
+                    System.out.println();
                 }
             }
 
