@@ -18,7 +18,6 @@ public class CityData {
 
         // skip first line and set delimeter
         csv.nextLine();
-        csv.useDelimiter(",(?=\")"); // matches a comma followed immediately by a double quote
 
         /*
          * scan worldcities.csv line by line,
