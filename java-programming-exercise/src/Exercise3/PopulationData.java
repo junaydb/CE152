@@ -33,9 +33,9 @@ public class PopulationData {
         noDataVal = Integer.parseInt(headers.get("NODATA_value"));
 
         // initialise popData with nrows and ncols values file
-        popData = new double[Integer.parseInt(headers.get("nrows"))][Integer.parseInt(headers.get("ncols"))];
+        popData = new double[rows][cols];
 
-        // read file into 2D array
+        // read file into 2D array, row major order
         int i = 0;
         while (s.hasNextLine()) {
             String line = s.nextLine();

@@ -13,12 +13,12 @@ public class PopulationDisplay extends JComponent {
     // fields
     private PopulationData popDataObj;
     private BufferedImage map;
-    private File testFile = new File(System.getProperty("user.dir") + "/map.png");
+    private File imgFile = new File(System.getProperty("user.dir") + "/map.png");
 
     // constructor
     public PopulationDisplay(String path) throws FileNotFoundException {
         popDataObj = new PopulationData(path);
-        map = new BufferedImage(popDataObj.getRows(), popDataObj.getCols(), BufferedImage.TYPE_INT_RGB);
+        map = new BufferedImage(popDataObj.getCols(), popDataObj.getRows(), BufferedImage.TYPE_INT_RGB);
     }
 
     // methods
@@ -30,24 +30,24 @@ public class PopulationDisplay extends JComponent {
         return popDataObj.getCols();
     }
 
-    // method for getting pixel colour based on density value
-    public Color getColour(int i, int j) {
+    // get pixel colour based on density value
+    public int getColour(int i, int j) {
         double pixelData = popDataObj.getPixelData(i, j);
 
         if (pixelData == popDataObj.getNoDataVal()) {
-            return new Color(63, 205, 255);
+            return new Color(63, 205, 255).getRGB();
         } else if (pixelData > 100) {
-            return new Color(238, 67, 54);
+            return new Color(238, 67, 54).getRGB();
         } else if (pixelData > 25) {
-            return new Color(234, 109, 53);
+            return new Color(234, 109, 53).getRGB();
         } else if (pixelData > 5) {
-            return new Color(233, 115, 52);
+            return new Color(233, 115, 52).getRGB();
         } else if (pixelData > 1) {
-            return new Color(227, 169, 100);
+            return new Color(227, 169, 100).getRGB();
         } else if (pixelData < 1) {
-            return new Color(224, 195, 124);
+            return new Color(224, 195, 124).getRGB();
         } else {
-            return new Color(222, 219, 178);
+            return new Color(222, 219, 178).getRGB();
         }
     }
 
@@ -56,15 +56,19 @@ public class PopulationDisplay extends JComponent {
         // set BufferedImage pixels using values from popData
         for (int i = 0; i < popDataObj.getRows(); i++) {
             for (int j = 0; j < popDataObj.getCols(); j++) {
-                map.setRGB(i, j, getColour(i, j).getRGB());
+                map.setRGB(j, i, getColour(i, j));
             }
         }
-        // draw and store BufferedImage to file
-        g.drawImage(map, 0, 0, popDataObj.getCols(), popDataObj.getRows(), this);
+
+        // draw image
+        g.drawImage(map, 0, 0, popDataObj.getCols() / 6, popDataObj.getRows() / 6, this);
+
+        // save image to file
         try {
-            ImageIO.write(map, "png", testFile);
+            ImageIO.write(map, "png", imgFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
