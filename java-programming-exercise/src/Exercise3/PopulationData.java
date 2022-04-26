@@ -27,12 +27,12 @@ public class PopulationData {
             }
         }
 
-        // store some header values in fields
+        // store some of the header values in fields
         rows = Integer.parseInt(headers.get("nrows"));
         cols = Integer.parseInt(headers.get("ncols"));
         noDataVal = Integer.parseInt(headers.get("NODATA_value"));
 
-        // initialise popData with nrows and ncols values file
+        // initialise popData array with row and col values retrieved from file
         popData = new double[rows][cols];
 
         // read file into 2D array, row major order

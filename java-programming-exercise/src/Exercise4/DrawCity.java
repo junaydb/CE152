@@ -21,6 +21,7 @@ public class DrawCity extends JComponent {
         this.height = height;
     }
 
+    // draw circle centered to x and y values, draw string
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(new Color(10, 10, 10));

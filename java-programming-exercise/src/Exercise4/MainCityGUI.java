@@ -40,6 +40,7 @@ public class MainCityGUI implements ActionListener {
             // close addCityWindow
             cityGUI.addCityWindow.dispose();
         } catch (NumberFormatException err) {
+            // display error label in GUI in event of incorrect user input
             JLabel error = new JLabel("Size must be an integer value!");
             error.setBounds(60, 120, 200, 40);
             cityGUI.addCityWindow.add(error);
