@@ -17,6 +17,7 @@ public class MainPopulation {
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // for debug
         System.out.println("rows: " + rows + " cols: " + cols);
         System.out.println("window size: " + f.getSize());
     }

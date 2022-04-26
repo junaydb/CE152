@@ -12,13 +12,21 @@ import java.awt.Color;
 public class PopulationDisplay extends JComponent {
     // fields
     private PopulationData popDataObj;
+    private PopulationData[] popDataObjs;
     private BufferedImage map;
     private File imgFile = new File(System.getProperty("user.dir") + "/map.png");
 
-    // constructor
+    // constructors
     public PopulationDisplay(String path) throws FileNotFoundException {
         popDataObj = new PopulationData(path);
         map = new BufferedImage(popDataObj.getCols(), popDataObj.getRows(), BufferedImage.TYPE_INT_RGB);
+    }
+
+    public PopulationDisplay(String[] paths) throws FileNotFoundException {
+        popDataObjs = new PopulationData[paths.length];
+        for (int i = 0; i < popDataObjs.length; i++) {
+            popDataObjs[i] = new PopulationData(paths[i]);
+        }
     }
 
     // methods
@@ -30,7 +38,7 @@ public class PopulationDisplay extends JComponent {
         return popDataObj.getCols();
     }
 
-    // get pixel colour based on density value
+    // get pixel colour based on passed value
     public int getColour(int i, int j) {
         double pixelData = popDataObj.getPixelData(i, j);
 
@@ -53,7 +61,7 @@ public class PopulationDisplay extends JComponent {
 
     @Override
     protected void paintComponent(Graphics g) {
-        // set BufferedImage pixels using values from popData
+        // set BufferedImage pixels using density values from popData
         for (int i = 0; i < popDataObj.getRows(); i++) {
             for (int j = 0; j < popDataObj.getCols(); j++) {
                 map.setRGB(j, i, getColour(i, j));
@@ -69,6 +77,5 @@ public class PopulationDisplay extends JComponent {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
